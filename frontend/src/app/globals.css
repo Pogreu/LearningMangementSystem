@@ -1,26 +1,171 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+  --font-geist-sans: "Inter", ui-sans-serif, system-ui;
+  --font-heading: "Lexend", ui-sans-serif, system-ui;
+  --font-geist-mono: "Fira Code", ui-monospace, SFMono-Regular;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  /* Global borders and outlines */
+  * {
+    border-color: var(--border);
+    outline-color: var(--ring);
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Fonts */
+  html {
+    font-family: var(--font-geist-sans), ui-sans-serif, system-ui;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading), ui-sans-serif, system-ui;
+  }
+
+  code, pre {
+    font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular;
+  }
+
+  /* Body background + text */
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  /* Headers */
+  h1 { font-weight: 700; font-size: 2.25rem; line-height: 2.5rem; letter-spacing: -0.02em; }
+  h2 { font-weight: 600; font-size: 1.875rem; line-height: 2.25rem; letter-spacing: -0.015em; }
+  h3 { font-weight: 600; font-size: 1.5rem; line-height: 2rem; }
+  h4, h5, h6 { font-weight: 500; font-size: 1.25rem; line-height: 1.75rem; }
+
+  /* Code blocks */
+  code, pre {
+    font-size: 0.95rem;
+    background-color: var(--muted);
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+  }
+
+  pre {
+    padding: 1rem;
+    overflow-x: auto;
+    background-color: var(--muted);
+  }
+
+  /* Paragraphs */
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+    font-weight: 400;
+    letter-spacing: 0.015em;
+  }
+
+  small, .text-small {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: var(--muted-foreground);
+  }
+
+  blockquote {
+    font-style: italic;
+    border-left: 4px solid var(--accent);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: var(--muted-foreground);
+  }
+
+  a {
+    text-decoration: underline;
+    color: var(--primary);
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  a:hover {
+    color: var(--accent);
+  }
+
+  /* Card and section defaults */
+  .card, .section {
+    background-color: var(--card);
+    color: var(--card-foreground);
+    border-color: var(--border);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+
+  /* Header sections */
+  .header {
+    background-color: var(--card);
+    border-color: var(--border);
+    transition: background-color 0.3s, border-color 0.3s;
+  }
 }
